@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Clima - OpenWeather App</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+	<button id="toggleTheme" title="Cambiar modo oscuro/claro" aria-label="Cambiar modo oscuro/claro">
+		<svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+			<path d="M21 12.79A9 9 0 0112.79 3a7 7 0 100 14 9 9 0 008.21-4.21z" fill="#232b3b"/>
+		</svg>
+	</button>
+	<div class="container">
+		<h1>Clima</h1>
+		<div class="subtitle">Descubre el tiempo en cualquier ciudad del mundo</div>
+		<form class="search-bar" id="searchForm" autocomplete="off">
+			<input type="text" id="cityInput" placeholder="Escribe el nombre de una ciudad..." autofocus>
+			<button type="submit" title="Buscar" aria-label="Buscar">
+				<svg id="searchIcon" class="search-icon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+					<circle cx="11" cy="11" r="7" class="search-icon-stroke" stroke-width="2" fill="none"/>
+					<line x1="16.5" y1="16.5" x2="21" y2="21" class="search-icon-stroke" stroke-width="2" stroke-linecap="round"/>
+				</svg>
+			</button>
+		</form>
+		<div class="weather-result" style="display:none">
+			<img id="weatherIcon" class="icon" src="" alt="Icono del clima" style="display:block;margin:0 auto;">
+			<div class="city" id="weatherCity"></div>
+			<div class="temp" id="weatherTemp"></div>
+			<div class="desc" id="weatherDesc"></div>
+			<button id="toggleGraph" style="margin:1em auto 0 auto;display:block;padding:8px 18px;border-radius:8px;border:none;background:#2a7ecb;color:#fff;font-size:1rem;cursor:pointer;transition:background 0.2s;">Ver gráfico por horas</button>
+			<canvas id="weatherChart" width="320" height="180" style="margin-top:1.5em;display:none;"></canvas>
+		</div>
+		<div class="error-message" style="display:none"></div>
+		<div class="api-warning" style="display:none">
+			Configura tu API key de OpenWeather para usar esta aplicación
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="js/script.js"></script>
+</body>
+</html>

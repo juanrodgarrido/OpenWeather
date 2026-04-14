@@ -1,0 +1,246 @@
+#toggleTheme {
+    position: fixed;
+    top: 24px;
+    right: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transition: background 0.2s;
+}
+
+#toggleTheme:focus {
+    outline: 2px solid #2a7ecb;
+}
+
+@media (max-width: 600px) {
+    #toggleTheme {
+        top: 12px;
+        right: 12px;
+    }
+}
+.search-icon-svg .search-icon-stroke {
+    stroke: #fff;
+    transition: stroke 0.4s;
+}
+body.dark-mode .search-icon-svg .search-icon-stroke {
+    stroke: #232b3b;
+}
+/* Estilos base para el diseño tipo neumorfismo y limpio */
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5fafd 0%, #e3ecf7 100%);
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    transition: background 0.4s;
+}
+
+body.dark-mode {
+    background: linear-gradient(135deg, #232b3b 0%, #1a202c 100%);
+}
+.container {
+    margin-top: 80px;
+    background: #f7fafd;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    padding: 40px 32px 32px 32px;
+    width: 100%;
+    max-width: 540px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: background 0.4s, box-shadow 0.4s;
+}
+
+body.dark-mode .container {
+    background: #232b3b;
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.25);
+}
+h1 {
+    font-size: 3rem;
+    font-weight: 500;
+    color: #232b3b;
+    margin-bottom: 0.5em;
+    font-family: 'Georgia', serif;
+    transition: color 0.4s;
+}
+
+body.dark-mode h1 {
+    color: #f7fafd;
+}
+.subtitle {
+    color: #4b5a6b;
+    font-size: 1.2rem;
+    margin-bottom: 2em;
+    text-align: center;
+    transition: color 0.4s;
+}
+
+body.dark-mode .subtitle {
+    color: #bfc9d9;
+}
+.search-bar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5em;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 18px 20px;
+    border: none;
+    border-radius: 12px 0 0 12px;
+    font-size: 1.1rem;
+    background: #f0f4fa;
+    outline: none;
+    box-shadow: 0 2px 8px rgba(31,38,135,0.04);
+    transition: box-shadow 0.2s;
+    color: #232b3b;
+}
+
+body.dark-mode .search-bar input {
+    background: #232b3b;
+    color: #f7fafd;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.search-bar input:focus {
+    box-shadow: 0 4px 16px rgba(31,38,135,0.08);
+}
+
+.search-bar button {
+    background: #232b3b;
+    color: #fff;
+    border: none;
+    border-radius: 0 12px 12px 0;
+    padding: 0 22px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar button:hover {
+    background: #3a4660;
+}
+body.dark-mode .search-bar button {
+    background: #f7fafd;
+    color: #232b3b;
+}
+body.dark-mode .search-bar button:hover {
+    background: #bfc9d9;
+}
+
+/* Botón modo noche */
+#toggleTheme {
+    transition: background 0.3s;
+}
+#toggleTheme:focus {
+    outline: 2px solid #2a7ecb;
+}
+#themeIcon {
+    transition: fill 0.4s;
+}
+body.dark-mode #themeIcon {
+    fill: #f7fafd;
+}
+.search-bar button:hover {
+    background: #3a4660;
+}
+
+.weather-result {
+    margin-top: 2em;
+    text-align: center;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(31,38,135,0.06);
+    padding: 24px 18px;
+    min-width: 260px;
+    transition: background 0.4s, box-shadow 0.4s;
+}
+
+body.dark-mode .weather-result {
+    background: #1a202c;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+}
+.weather-result .city {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #232b3b;
+    transition: color 0.4s;
+}
+
+body.dark-mode .weather-result .city {
+    color: #f7fafd;
+}
+.weather-result .temp {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #2a7ecb;
+    margin: 0.2em 0 0.5em 0;
+    transition: color 0.4s;
+}
+
+body.dark-mode .weather-result .temp {
+    color: #7ecbff;
+}
+.weather-result .desc {
+    font-size: 1.2rem;
+    color: #4b5a6b;
+    margin-bottom: 0.5em;
+    transition: color 0.4s;
+}
+
+body.dark-mode .weather-result .desc {
+    color: #bfc9d9;
+}
+.weather-result .icon {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 0.5em;
+}
+
+.error-message {
+    color: #e74c3c;
+    background: #fff3f3;
+    border-radius: 10px;
+    padding: 12px 18px;
+    margin-top: 1.5em;
+    font-size: 1.1rem;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(231,76,60,0.07);
+    transition: background 0.4s, color 0.4s;
+}
+
+body.dark-mode .error-message {
+    background: #3a2323;
+    color: #ffb3b3;
+}
+.api-warning {
+    color: #b8860b;
+    background: #fffbe6;
+    border-radius: 10px;
+    padding: 10px 16px;
+    margin-top: 1.5em;
+    font-size: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(184,134,11,0.07);
+    transition: background 0.4s, color 0.4s;
+}
+
+body.dark-mode .api-warning {
+    background: #2d2a1a;
+    color: #ffe08a;
+}
