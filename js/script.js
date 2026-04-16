@@ -1,3 +1,62 @@
+function getFavorites() {
+  return JSON.parse(localStorage.getItem("favorites")) || [];
+}
+
+function saveFavorites(favs) {
+  localStorage.setItem("favorites", JSON.stringify(favs));
+}
+
+function updateFavButton(currentCity) {
+
+  if (!currentCity) return;
+
+  
+  $("#favBtn").removeClass("active").text("☆");
+
+  const favs = getFavorites();
+
+  if (favs.includes(currentCity)) {
+    $("#favBtn").addClass("active").text("★");
+  }
+}
+
+$("#favoritesToggle").on("click", function (e) {
+   e.stopPropagation();
+
+  $("#favoritesMenu").toggle();
+  
+  
+});
+
+function renderFavorites() {
+  const favs = getFavorites();
+  const $list = $("#favoritesList");
+  $list.empty();
+
+  if (favs.length === 0) {
+    $list.append("<li>No hay favoritos</li>");
+    return;
+  }
+
+  favs.forEach(city => {
+    $list.append(`<li class="fav-item">${city}</li>`);
+  });
+}
+
+$(document).on("click", function (e) { //Funcion para que el menú se cierre desde cualquier click
+  const $menu = $("#favoritesMenu");
+  const $btn = $("#favoritesToggle");
+
+  
+  if (
+    !$menu.is(e.target) &&
+    $menu.has(e.target).length === 0 &&
+    !$btn.is(e.target)
+  ) {
+    $menu.hide();
+  }
+});
+
 // Función que genera la lluvia
 function createRain() {
   const rainBg = document.querySelector(".rain-bg");
@@ -29,13 +88,11 @@ $("#toggleTheme").on("click", function () {
   $("body").toggleClass("dark-mode");
   const isDark = $("body").hasClass("dark-mode");
   const $icon = $("#themeIcon");
-  if (isDark) {
-    // Sol SVG
+  if (isDark) {    
     $icon.html(
       '<circle cx="12" cy="12" r="5" fill="#f7fafd"/><g stroke="#f7fafd" stroke-width="2"><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/></g>',
     );
-  } else {
-    // Luna SVG
+  } else {    
     $icon.html(
       '<path d="M21 12.79A9 9 0 0112.79 3a7 7 0 100 14 9 9 0 008.21-4.21z" fill="#232b3b"/>',
     );
@@ -44,8 +101,13 @@ $("#toggleTheme").on("click", function () {
 $(document).ready(function () {
   const API_KEY = "5a5198eed4bf92a4f862270330b61173";
 
+
+  renderFavorites();
+
+
   $("#searchForm").on("submit", function (e) {
     e.preventDefault();
+    
     const city = $("#cityInput").val().trim();
     $(".weather-result").hide();
     $(".error-message").hide();
@@ -60,6 +122,7 @@ $(document).ready(function () {
       return;
     }
     getWeather(city);
+    updateFavButton();
   });
 
   let weatherChart = null;
@@ -89,6 +152,36 @@ $(document).ready(function () {
     });
   }
 
+  let currentCity = "";
+
+
+  $(document).on("click", "#favBtn", function () {
+  if (!currentCity) return;
+
+  let favs = getFavorites();
+
+  if (favs.includes(currentCity)) {
+    favs = favs.filter(c => c !== currentCity);
+    $(this).removeClass("active").text("☆");
+  } else {
+    favs.push(currentCity);
+    $(this).addClass("active").text("★");
+  }
+
+ 
+  saveFavorites(favs);
+  renderFavorites(); 
+  
+});
+
+$(document).on("click", ".fav-item", function () {
+  const city = $(this).text();
+  $("#cityInput").val(city);
+  getWeather(city);
+  $("#favoritesMenu").hide();
+});
+
+
   function showWeather(data, showGraph) {
     // Mostrar ciudad y país
     $("#weatherCity").text(`${data.city.name}, ${data.city.country}`);
@@ -101,6 +194,10 @@ $(document).ready(function () {
     const iconCode = data.list[0].weather[0].icon;
     const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@4x.png`;
     $("#weatherIcon").attr("src", iconUrl);
+
+    currentCity = `${data.city.name}, ${data.city.country}`;
+    
+    
 
     if (!showGraph) {
       // Mostrar solo temperatura actual
@@ -197,8 +294,11 @@ $(document).ready(function () {
       $("#toggleGraph").text("Ver temperatura actual");
       $("#weatherChart").show();
     }
+    
     $(".weather-result").show();
     $(".error-message").hide();
+    updateFavButton(currentCity);
+    
   }
   // Alternar entre vista de temperatura y gráfico
   $(document).on("click", "#toggleGraph", function () {

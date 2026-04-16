@@ -18,12 +18,6 @@
   outline: 2px solid #2a7ecb;
 }
 
-@media (max-width: 600px) {
-  #toggleTheme {
-    top: 12px;
-    right: 12px;
-  }
-}
 .search-icon-svg .search-icon-stroke {
   stroke: #fff;
   transition: stroke 0.4s;
@@ -31,7 +25,7 @@
 body.dark-mode .search-icon-svg .search-icon-stroke {
   stroke: #232b3b;
 }
-/* Estilos base para el diseño tipo neumorfismo y limpio */
+
 body {
   min-height: 100vh;
   background: linear-gradient(135deg, #f5fafd 0%, #e3ecf7 100%);
@@ -51,6 +45,10 @@ body {
   overflow: hidden;
   z-index: 0;
 }
+
+
+
+
 
 .container {
   margin-top: 80px;
@@ -204,7 +202,7 @@ body.dark-mode .search-bar button:hover {
   background: #bfc9d9;
 }
 
-/* Botón modo noche */
+
 #toggleTheme {
   transition: background 0.3s;
 }
@@ -233,6 +231,106 @@ body.dark-mode #themeIcon {
     background 0.4s,
     box-shadow 0.4s;
 }
+
+.city-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+#favBtn {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #ccc;
+  transition: color 0.3s, transform 0.2s;
+}
+
+#favBtn:hover {
+  transform: scale(1.2);
+}
+
+#favBtn.active {
+  color: gold;
+}
+
+.top-buttons {
+  position: fixed;
+  top: 24px;
+  right: 80px;
+  z-index: 100;
+}
+
+#favoritesToggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.dark-mode #favIcon {
+  color: #f7fafd;
+}
+
+#favoritesToggle.active #favIcon {
+  transform: scale(1.15);
+}
+
+#favIcon {
+  color: #232b3b; 
+  transition: color 0.3s, transform 0.2s;
+}
+
+
+.favorites-menu {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  width: 220px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  padding: 10px;
+  display: none;
+}
+
+body.dark-mode .favorites-menu {
+  background: #232b3b;
+  color: white;
+}
+
+.favorites-menu h3 {
+  margin: 5px 0 10px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+#favoritesList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#favoritesList li {
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#favoritesList li:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+body.dark-mode #favoritesList li:hover {
+  background: rgba(255,255,255,0.1);
+}
+
 
 body.dark-mode .weather-result {
   background: #1a202c;
@@ -312,4 +410,62 @@ body.dark-mode .error-message {
 body.dark-mode .api-warning {
   background: #2d2a1a;
   color: #ffe08a;
+}
+
+
+@media (max-width: 768px) {
+  body {
+    padding: 0;
+  }
+
+  .container {
+    margin-top: 90px;
+    margin-left: 12px;
+    margin-right: 12px;
+    padding: 24px 16px;
+    width: auto;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+.top-buttons {
+    justify-self: right;
+  }
+
+
+  .search-bar input {
+    font-size: 1rem;
+    padding: 14px;
+  }
+
+  .search-bar button {
+    height: 48px;
+    padding: 0 16px;
+  }
+
+  .weather-result {
+    min-width: unset;
+    width: 80%;
+    padding: 18px;
+  }
+
+  .weather-result .temp {
+    font-size: 2.2rem;
+  }
+
+  .favorites-menu {
+    width: 180px;
+    right: 0;
+    font-size: 0.9rem;
+  }
+
+  #favoritesList li {
+    padding: 10px;
+  }
 }

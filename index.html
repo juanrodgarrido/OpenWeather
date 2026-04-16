@@ -12,11 +12,27 @@
 </head>
 <body>
 	<div class="rain-bg" aria-hidden="true"></div>
+	<div class="top-buttons">
+    <button id="favoritesToggle" aria-label="Favoritos">
+  <svg id="favIcon" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none">
+    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+      stroke="currentColor"
+      stroke-width="2"
+      fill="none"
+      stroke-linejoin="round"/>
+  </svg>
+</button>
 	<button id="toggleTheme" title="Cambiar modo oscuro/claro" aria-label="Cambiar modo oscuro/claro">
 		<svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" aria-hidden="true">
 			<path d="M21 12.79A9 9 0 0112.79 3a7 7 0 100 14 9 9 0 008.21-4.21z" fill="#232b3b"/>
 		</svg>
 	</button>
+  <div id="favoritesMenu" class="favorites-menu">
+    <h3>Favoritos</h3>
+    <ul id="favoritesList"></ul>
+  </div>
+</div>
+	
 	<div class="container">
 		<h1>SkyTracker</h1>
 		<div class="subtitle">Usando la tecnología de OpenWeatherMap</div>
@@ -31,7 +47,10 @@
 		</form>
 		<div class="weather-result" style="display:none">
 			<img id="weatherIcon" class="icon" src="" alt="Icono del clima" style="display:block;margin:0 auto;">
-			<div class="city" id="weatherCity"></div>
+			<div class="city-row">
+  <div class="city" id="weatherCity"></div>
+  <button id="favBtn" title="Añadir a favoritos">☆</button>
+</div>
 			<div class="temp" id="weatherTemp"></div>
 			<div class="desc" id="weatherDesc"></div>
 			<button id="toggleGraph">Ver gráfico por horas</button>
