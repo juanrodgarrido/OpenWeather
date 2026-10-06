@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SkyTracker (OpenWeatherMap API)</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="rain-bg" aria-hidden="true"></div>
+	<div class="top-buttons">
+    <button id="favoritesToggle" aria-label="Favoritos">
+  <svg id="favIcon" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none">
+    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+      stroke="currentColor"
+      stroke-width="2"
+      fill="none"
+      stroke-linejoin="round"/>
+  </svg>
+</button>
+	<button id="toggleTheme" title="Cambiar modo oscuro/claro" aria-label="Cambiar modo oscuro/claro">
+		<svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+			<path d="M21 12.79A9 9 0 0112.79 3a7 7 0 100 14 9 9 0 008.21-4.21z" fill="#232b3b"/>
+		</svg>
+	</button>
+  <div id="favoritesMenu" class="favorites-menu">
+    <h3>Favoritos</h3>
+    <ul id="favoritesList"></ul>
+  </div>
+</div>
+	
+	<div class="container">
+		<h1>SkyTracker</h1>
+		<div class="subtitle">Usando la tecnología de OpenWeatherMap</div>
+		<form class="search-bar" id="searchForm" autocomplete="off">
+			<input type="text" id="cityInput" placeholder="Escribe el nombre de una ciudad..." autofocus>
+			<button type="submit" title="Buscar" aria-label="Buscar">
+				<svg id="searchIcon" class="search-icon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+					<circle cx="11" cy="11" r="7" class="search-icon-stroke" stroke-width="2" fill="none"/>
+					<line x1="16.5" y1="16.5" x2="21" y2="21" class="search-icon-stroke" stroke-width="2" stroke-linecap="round"/>
+				</svg>
+			</button>
+		</form>
+		<div class="weather-result" style="display:none">
+			<img id="weatherIcon" class="icon" src="" alt="Icono del clima" style="display:block;margin:0 auto;">
+			<div class="city-row">
+  <div class="city" id="weatherCity"></div>
+  <button id="favBtn" title="Añadir a favoritos">☆</button>
+</div>
+			<div class="temp" id="weatherTemp"></div>
+			<div class="desc" id="weatherDesc"></div>
+			<button id="toggleGraph">Ver gráfico por horas</button>
+			<canvas id="weatherChart" width="320" height="180"></canvas>
+		</div>
+		<div class="error-message" ></div>
+		<div class="api-warning" >
+			Configura tu API key de OpenWeather para usar esta aplicación
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="js/script.js"></script>
+</body>
+</html>
